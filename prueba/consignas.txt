@@ -1,0 +1,6 @@
+1- realizar un programa socket server y un socket client de conexion basica que solo envie un string en forma bidireccional ingresado por teclado
+2- el programa servidor debe tener una lista o diccionario con nombres de usuarios o contraseñas. Cuando el cliente envie /log in nombre de usuario y contraseña el servidor debe verificar contra el diccionario e imprimir y enviar bienvenido (nombre de usuario) o conexion rechazada y cerrar el socket.
+el servidor tiene que decir en el arranque el servidor esta escuchando en el puerto...
+
+3-modificar los programas anteriores para que el servidor sea concurrente permitiendo la conexion de multiples clientes e informando la cantidad de clientes conectados impidiendo la conexion de un nuevo cliente cuando su usuario coincide con un cliente ya conectado.
+4- si el cliente como en el servidor se ingresa /users me tiene que mostrar los usuarios conectados, si se ingresa /ips me tiene que enlistar las ips de los clientes conectados. (si se ingresa /all y un mensaje ese mensaje tiene que mandarse a todos)

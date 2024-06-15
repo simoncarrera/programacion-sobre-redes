@@ -1,16 +1,22 @@
 import socket
-
-def recibir_mensajes(cliente_socket):
-    while True:
-        try:
-            mensaje = cliente_socket.recv(1024).decode("utf-8")
-            if mensaje:
-                print(f"\n{mensaje}")
+def comando(cliente_socket):
+    opcion = input("Que quiere hacer..:")
+    if opcion == "/log in":
+            usuario = input("usuario: ")
+            cliente_socket.send(usuario.encode("utf-8"))
+            print("usuario enviado: " + usuario)
+            Pass = input("Pass: ")
+            cliente_socket.send(Pass.encode("utf-8"))
+            print("contraseña enviada: "+ Pass)
+            respuesta = cliente_socket.recv(1024).decode("utf-8")
+            print("Servidor: " + respuesta)
+            
+            if respuesta == "Autenticación Exitosa.":
+                return True
             else:
-                break
-        except:
-            print("Conexión cerrada por el servidor.")
-            break
+                return False
+    else:
+        print("no valido. Intentelo de nuevo.")
 
 def menu_cliente(cliente_socket):
         print("Menú \n1 Chat con el servidor\n2 Salir.")
@@ -30,19 +36,12 @@ def menu_cliente(cliente_socket):
         else:
             print("Opción no valida.")             
 
-
-
-
-
-
-
-
-
 def main():
     cliente_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     try:
         cliente_socket.connect(("localhost", 65432))
-        menu_cliente(cliente_socket)
+        if comando(cliente_socket):
+            menu_cliente(cliente_socket)
     finally:
         cliente_socket.close()
         
